@@ -1,12 +1,12 @@
 const { Op } = require("sequelize");
 const { Task } = require("../model");
-exportsTask = async({ limit = 5, page = 1, key = "" }) => {
+exports.getTask = async({ limit = 5, page = 1, key = "" }) => {
     try {
         const listTask = await Task.findAll({
             where: {
-                name: {
-                    [Op.substring]: key,
-                },
+                // name: {
+                //     [Op.substring]: key,
+                // },
             },
             limit: Number(limit),
             offset: Number((page - 1) * limit),
@@ -19,8 +19,9 @@ exportsTask = async({ limit = 5, page = 1, key = "" }) => {
 exports.createTask = async(body) => {
     try {
         const newTask = await Task.create({
-            content = body.content,
-            status = body.status
+            content: body.content,
+            status: body.status,
+            UserId: body.UserId,
         });
         return newTask;
     } catch (error) {}

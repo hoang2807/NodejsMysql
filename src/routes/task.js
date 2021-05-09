@@ -1,8 +1,8 @@
 const task = require("express").Router();
-const { UserController } = require("../controller");
+const { TaskController } = require("../controller");
 task.get("/task", async(req, res) => {
     const query = req.query;
-    const data = await UserController.getUser(query);
+    const data = await TaskController.getTask(query);
     res.json({
         data,
     });
@@ -11,7 +11,7 @@ task.get("/task", async(req, res) => {
 task.post("/task", async(req, res) => {
     const body = req.body;
     console.log(body);
-    const data = await UserController.createUser(body);
+    const data = await TaskController.createTask(body);
     res.json({
         data,
     });
@@ -19,15 +19,15 @@ task.post("/task", async(req, res) => {
 
 task.put("/task", async(req, res) => {
     const body = req.body;
-    const data = await UserController.updateUser(body);
+    const data = await TaskController.updateTask(body);
     res.json({
         data,
     });
 });
 
 task.delete("/task/:taskId", async(req, res) => {
-    const userId = req.params.userId;
-    const data = await UserController.deleteUser(userId);
+    const TaskId = req.params.taskId;
+    const data = await TaskController.deleteTask(TaskId);
     res.json({
         data,
     });

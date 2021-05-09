@@ -12,7 +12,7 @@ exports.getUser = async({ limit = 5, page = 1, key = "" }) => {
             },
             limit: Number(limit),
             offset: Number((page - 1) * limit),
-            include: [{ model: Task, as: "tasks" }],
+            include: [{ model: Task }],
         });
 
         return listUser;
